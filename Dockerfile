@@ -4,9 +4,13 @@ FROM golang:alpine
 # intruksi untuk menjalankan command di container. command dieksekusi sebagai comand shell di dalam container, /bin/sh atau cmd di Windows. RUN akan membuat layer baru disetiap RUN command best practice penggunaan RUN dengan menggabung multiple command dengan &&
 RUN apk update && apk add git
 
-#environment variable
-ENV PORT=8083
-ENV INSTANCE_ID="dockerfile"
+#build arguments
+ARG DEFAULT_PORT=7777
+ARG DEFAULT_INSTANCE_ID=9024
+
+#log
+RUN echo "isi dari argument DEFAULT_PORT adalah ${DEFAULT_PORT}"
+RUN echo "isi dari argument DEFAULT_INSTANCE_ID adalah ${DEFAULT_INSTANCE_ID}"
 
 #menetapkan direktori kerja saat ini
 WORKDIR /app
